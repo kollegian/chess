@@ -1,5 +1,5 @@
-
-class Pond
+require_relative "Board"
+class Pond < Board
   attr_accessor :side, :position
   def initialize(side)
     if side=="black"
@@ -35,16 +35,35 @@ class Pond
     y=@position[1]
     if @side=="white"
       if x==1
+        if @@arr[x+2][y]==" "
         @moves.push([x+2,y])
+        end
       end
+      if @@arr[x+1][y]==" "
       @moves.push([x+1,y])
+      end
+      if @@arr[x+1][y+1]!=nil && @@arr[x+1][y+1]!=" " && @@arr[x+1][y+1].side=="black"
+        @moves.push([x+1, y+1])
+      end 
+      if @@arr[x+1][y-1]!=nil && @@arr[x+1][y-1]!=" " && @@arr[x+1][y-1].side=="black"
+        @moves.push([x+1, y-1])
+      end  
     else 
-      if x==6
+      if x==6 && @@arr[x-2][y]==" "
         @moves.push([x-2,y])
       end
+      if @@arr[x-1][y]==" "
       @moves.push([x-1,y])
+      end
+      if @@arr[x-1][y-1]!=nil && @@arr[x-1][y-1]!=" "&& @@arr[x-1][y-1].side=="white"
+        @moves.push([x-1,y-1])
+      end
+      if @@arr[x-1][y+1]!=nil && @@arr[x-1][y+1]!=" " && @@arr[x-1][y+1].side=="white"
+        @moves.push([x-1,y+1])
+      end
     end
-    
+    @moves=@moves.select{|arrays| !arrays.any?{|a| a<0}}
+    p @moves
     return @moves.include?([a,b])
   end
 end
