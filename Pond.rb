@@ -32,10 +32,7 @@ class Pond
   def legal?(a,b)
     @moves=[]
     x=@position[0]
-    puts "x is #{x}"
     y=@position[1]
-    puts "y is #{y}"
-    puts @side
     if @side=="white"
       if x==1
         @moves.push([x+2,y])
@@ -47,7 +44,7 @@ class Pond
       end
       @moves.push([x-1,y])
     end
-    p @moves
+    
     return @moves.include?([a,b])
   end
 end

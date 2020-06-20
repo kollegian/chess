@@ -8,6 +8,14 @@ require_relative "Board"
 
 game=Board.new
 game.start_game
-pond1=game.arr[6][0]
-pond1.move(5,0)
-p pond1.position
+game.print_board
+puts "command: "
+x=gets.chomp
+while x!="stop"
+  cord1=gets.chomp.to_i
+  cord2=gets.chomp.to_i
+game.choose(cord1, cord2)
+game.print_board
+puts "command:"
+x=gets.chomp   
+end 
