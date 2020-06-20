@@ -1,6 +1,6 @@
+require_relative "Rook"
 require_relative "Pond"
 require_relative "Knight"
-require_relative "Rook"
 require_relative "King"
 require_relative "Queen"
 require_relative "Bishop"

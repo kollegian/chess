@@ -1,5 +1,6 @@
-class King
-  attr_accessor :position
+
+class King 
+  attr_accessor :position, :side
   def initialize(side)
     if side=="white"
       @symbol="\u265A"
