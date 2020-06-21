@@ -69,7 +69,7 @@ require_relative "Bishop"
       a=Bishop.new("white")
       b=Bishop.new("black")
       a.set_position(0,j)
-      b.set_position(0,j)
+      b.set_position(7,j)
       @@arr[0][j]=a
       @@arr[7][j]=b
       j+=5
