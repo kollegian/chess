@@ -30,45 +30,48 @@ class Rook < Board
   def legal?(a,b)
     x=@position[0]
     y=@position[1]
-    if @side=="white"
-      nextx=x+1
-      nexty=y
-      @moves=[]
-      while @@arr[nextx][nexty]==" " && nextx<8
-        @moves.push([nextx,nexty])
-        nextx+=1
-      end
-      nextx=x
-      nexty=y+1
-      while @@arr[nextx][nexty]==" " && nexty<8
-        @moves.push([nextx,nexty])
-        nexty+=1
-      end
-      nextx=x
-      nexty=y-1
-      while @@arr[nextx][nexty]==" " && nexty>=0
-        @moves.push([nextx,nexty])
-        nexty-=1
-      end
-    else 
-      nextx=x-1
-      nexty=y
-      while @@arr[nextx][nexty]==" " && nextx>=0
-        @moves.push([nextx,nexty])
-        nextx-=1
-      end
-      nextx=x
-      nexty=y-1
-      while @@arr[nextx][nexty]==" " && nexty>=0
-        @moves.push([nextx,nexty])
-        nexty-=1
-      end
-      nextx=x
-      nexty=y+1
-      while @@arr[nextx][nexty]==" " && nexty<8
-        @moves.push([nextx, nexty])
-        nexty+=1
+    @moves=[]
+    for j in (@position[1]+1)..7 do
+      if @@arr[x][j]==" "
+        @moves.push([x,j])
+      elsif @@arr[x][j]!=" " && @@arr[x][j].side!=@side
+        @moves.push([x,j]) 
+        break
+      else
+        break
       end
     end
-  end      
+    for j in (position[0]+1)..7 do
+      if @@arr[j][y]==" "
+        @moves.push([j,y])
+      elsif @@arr[j][y]!=" " && @@arr[j][y].side!=@side
+        @moves.push([j,y])
+        break
+      else 
+        break
+      end
+    end
+    for j in (position[0]-1).downto(0) do
+      if @@arr[j][y]==" "
+        @moves.push([j,y])
+      elsif @@arr[j][y]!=" " && @@arr[j][y].side!=@side
+        @moves.push([j,y]) 
+        break
+      else
+        break 
+      end
+    end
+    for j in (position[1]-1).downto(0) do
+      if @@arr[x][j]==" "
+        @moves.push([x,j])
+      elsif @@arr[x][j]!=" " && @@arr[x][j].side!=@side
+        @moves.push([x,j])
+        break
+      else
+        break
+      end
+    end
+    p @moves
+    return @moves.include?([a,b])
+  end 
 end

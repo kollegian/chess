@@ -17,4 +17,6 @@ class King
     @position.push(a)
     @position.push(b)
   end
-end      
+end
+
+          

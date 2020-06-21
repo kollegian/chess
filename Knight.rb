@@ -17,3 +17,5 @@ class Knight
     @position.push(b)
   end
 end
+
+

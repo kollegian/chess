@@ -1,9 +1,4 @@
-require_relative "Pond"
-require_relative "Knight"
-require_relative "Rook"
-require_relative "King"
-require_relative "Queen"
-require_relative "Bishop"
+
 class Board
     attr_accessor :arr
   def initialize
@@ -12,6 +7,12 @@ class Board
      @@arr.push(Array.new(8, " "))
     end
   end
+require_relative "Pond"
+require_relative "Knight"
+require_relative "Rook"
+require_relative "King"
+require_relative "Queen"
+require_relative "Bishop"
   def print_board
     i=1
     puts "  | A | B | C | D | E | F | G | H |"

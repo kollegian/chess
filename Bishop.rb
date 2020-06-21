@@ -1,5 +1,5 @@
 class Bishop
-  attr_accessor :position
+  attr_accessor :position, :side
   def initialize(side)
     if side=="white"
       @symbol="\u265D"
