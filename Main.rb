@@ -1,6 +1,7 @@
 require_relative "Board"
-
+require_relative "King"
 game=Board.new
+
 game.start_game
 game.print_board
 puts "command: "

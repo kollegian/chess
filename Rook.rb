@@ -19,15 +19,18 @@ class Rook < Board
     @position.push(b)
   end 
   def move(a,b)
-    if legal?(a,b)
-      @position=[]
+    if can_move?.include?([a,b])
       @position[0]=a
       @position[1]=b
     else
       "wrong move"
     end
   end
-  def legal?(a,b)
+  def unmove(a,b)
+    @position[0]=a
+    @position[1]=b
+  end
+  def can_move?
     x=@position[0]
     y=@position[1]
     @moves=[]
@@ -71,7 +74,11 @@ class Rook < Board
         break
       end
     end
-    p @moves
-    return @moves.include?([a,b])
+    if @side=="white"
+      @@wmoves.push(@moves)
+    else
+      @@bmoves.push(@moves)
+    end
+    return @moves
   end 
 end

@@ -19,14 +19,18 @@ class Queen < Board
     @position.push(b)
   end
   def move(a,b)
-    if legal?(a,b)
+    if can_move?.include?([a,b])
       @position[0]=a
       @position[1]=b
     else
       "wrong move"
     end
   end
-  def legal?(a,b)
+  def unmove(a,b)
+    @position[0]=a
+    @position[1]=b
+  end
+  def can_move?
     @moves=[]
     possible_moves=[[1,1],[-1,-1],[1,-1],[-1,1],[0,-1],[0,1],[-1,0],[1,0]]
     possible_moves.each do |move|
@@ -43,8 +47,12 @@ class Queen < Board
         @moves.push([nextx, nexty])
       end
     end
-    p @moves
-    return @moves.include?([a,b])
+    if @side=="white"
+      @@wmoves.push(@moves)
+    else
+      @@bmoves.push(@moves)
+    end
+    return @moves
   end  
 end
 

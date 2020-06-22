@@ -1,4 +1,5 @@
 require_relative "Board"
+require_relative "King"
 class Bishop < Board
   attr_accessor :position, :side
   def initialize(side)
@@ -19,14 +20,19 @@ class Bishop < Board
     @position.push(b)
   end
   def move(a,b)
-    if legal?(a,b)
+    if can_move?.include?([a,b])
       @position[0]=a
       @position[1]=b
+      @moves=can_move?
     else
       "wrong move"
     end
   end
-  def legal?(a,b)
+  def unmove(a,b)
+    @position[0]=a
+    @position[1]=b
+  end
+  def can_move?
     @moves=[]
     possible_moves=[[1,1],[-1,-1],[1,-1],[-1,1]]
     possible_moves.each do |move|
@@ -43,7 +49,6 @@ class Bishop < Board
         @moves.push([nextx, nexty])
       end
     end
-    p @moves
-    return @moves.include?([a,b])
+    return @moves
   end  
 end       
